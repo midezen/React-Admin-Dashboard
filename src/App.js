@@ -1,9 +1,15 @@
+import SideBar from "./components/sideBar/SideBar";
 import TopBar from "./components/topBar/TopBar";
+import "./app.css";
 
 const App = () => {
   return (
-    <div>
+    <div className="app">
       <TopBar />
+      <div className="container">
+        <SideBar />
+        <div className="others">other pages</div>
+      </div>
     </div>
   );
 };
