@@ -3,6 +3,7 @@ import TopBar from "./components/topBar/TopBar";
 import "./app.css";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Home from "./pages/home/Home";
+import UserList from "./pages/userLIst/UserList";
 
 const App = () => {
   const Layout = () => {
@@ -27,6 +28,11 @@ const App = () => {
         {
           path: "/",
           element: <Home />,
+        },
+
+        {
+          path: "/users",
+          element: <UserList />,
         },
       ],
     },
