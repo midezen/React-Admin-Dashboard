@@ -3,8 +3,16 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
 import { userRows } from "../../dummyData";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const UserList = () => {
+  const [data, setData] = useState(userRows);
+
+  const handleDelete = (id) => {
+    setData(data.filter((item) => item.id !== id));
+  };
+
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     {
@@ -42,8 +50,14 @@ const UserList = () => {
       renderCell: (params) => {
         return (
           <>
-            <button className="userListEdit">Edit</button>
-            <DeleteOutline className="userListDelete" />
+            <Link to={`/users/${params.row.id}`}>
+              <button className="userListEdit">Edit</button>
+            </Link>
+
+            <DeleteOutline
+              className="userListDelete"
+              onClick={() => handleDelete(params.row.id)}
+            />
           </>
         );
       },
@@ -54,7 +68,7 @@ const UserList = () => {
     <div className="userList">
       <Box sx={{ height: "90vh", width: "100%" }}>
         <DataGrid
-          rows={userRows}
+          rows={data}
           columns={columns}
           initialState={{
             pagination: {
